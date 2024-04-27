@@ -39,13 +39,13 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 	while (!bQuit) {
 		// IMPORTANT: We need to let GLib do it's thing. 
 		GLib::Service(bQuit);
-		for (std::shared_ptr<GameObject> gameObject : AllGameObjects) {
+		for (auto& gameObject : AllGameObjects) {
 			gameObject->update();
 		}
 
 
 		Rendering::beginRenderLoop();
-		for (std::shared_ptr<GameObject> gameObject : AllGameObjects) {
+		for (auto& gameObject : AllGameObjects) {
 			Rendering::drawSprite(gameObject->getComponent<SpriteComponent>(),
 				gameObject->getComponent<MovementComponent>());
 		}
