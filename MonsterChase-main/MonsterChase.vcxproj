@@ -154,10 +154,10 @@
     <ClCompile Include="GameObject\PlayerObjectController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Math\Vector4.cpp" />
     <ClCompile Include="Systems\Physics.cpp" />
     <ClCompile Include="Systems\Rendering.cpp" />
     <ClCompile Include="Systems\Timing.cpp" />
-    <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Components.h" />
@@ -168,10 +168,10 @@
     <ClInclude Include="GameObject\PlayerObjectController.h" />
     <ClInclude Include="Math\Vector2-inl.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector4.h" />
     <ClInclude Include="Systems\Physics.h" />
     <ClInclude Include="Systems\Rendering.h" />
     <ClInclude Include="Systems\Timing.h" />
-    <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\BadGuy.dds" />
