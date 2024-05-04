@@ -157,12 +157,11 @@
     <ClCompile Include="Systems\Physics.cpp" />
     <ClCompile Include="Systems\Rendering.cpp" />
     <ClCompile Include="Systems\Timing.cpp" />
+    <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Console\ConsolePrint.h" />
-    <ClInclude Include="Containers\List-inl.h" />
-    <ClInclude Include="Containers\List.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="GameObject\GameObjectFactory.h" />
     <ClInclude Include="GameObject\IGameObjectController.h" />
@@ -172,6 +171,7 @@
     <ClInclude Include="Systems\Physics.h" />
     <ClInclude Include="Systems\Rendering.h" />
     <ClInclude Include="Systems\Timing.h" />
+    <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\BadGuy.dds" />

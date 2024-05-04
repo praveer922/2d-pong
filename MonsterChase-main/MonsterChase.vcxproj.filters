@@ -16,9 +16,6 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{d8f37712-22c8-4125-821e-4fc90e8f735d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Containers">
-      <UniqueIdentifier>{b56b8e11-5b89-476f-bde9-5528bc5bab14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Console">
       <UniqueIdentifier>{6011e31a-c4e3-40da-a5de-e1a2a265847a}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,9 @@
     <ClCompile Include="GameObject\GameObject.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Vector2.h">
@@ -71,14 +71,8 @@
     <ClInclude Include="Math\Vector2-inl.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\List.h">
-      <Filter>Source Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Console\ConsolePrint.h">
       <Filter>Source Files\Console</Filter>
-    </ClInclude>
-    <ClInclude Include="Containers\List-inl.h">
-      <Filter>Source Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Components\Components.h">
       <Filter>Source Files\Components</Filter>
@@ -103,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\GameObject.h">
       <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
