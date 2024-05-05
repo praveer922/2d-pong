@@ -153,6 +153,7 @@
     <ClCompile Include="GameObject\GameObjectFactory.cpp" />
     <ClCompile Include="GameObject\PlayerObjectController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math\Matrix4.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Math\Vector4.cpp" />
     <ClCompile Include="Systems\Physics.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="GameObject\GameObjectFactory.h" />
     <ClInclude Include="GameObject\IGameObjectController.h" />
     <ClInclude Include="GameObject\PlayerObjectController.h" />
+    <ClInclude Include="Math\Matrix4.h" />
     <ClInclude Include="Math\Vector2-inl.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector4.h" />

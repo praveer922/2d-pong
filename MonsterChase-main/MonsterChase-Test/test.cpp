@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Vector4.h"
+#include "Matrix4.h"
 
 // Test length calculation
 TEST(Vector4Test, Length) {
@@ -35,4 +36,66 @@ TEST(Vector4Test, SubtractionOperator) {
     Vector4 v2(2.0f, 3.0f, 4.0f, 5.0f);
     Vector4 result = v2 - v1;
     EXPECT_EQ(result, Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+}
+
+// Test constructor and equality operator
+TEST(Matrix4Test, ConstructorAndEquality) {
+    Matrix4 m1;
+    Matrix4 m2(1.0f);
+    Matrix4 m3({
+        {1.0f, 2.0f, 3.0f, 4.0f},
+        {5.0f, 6.0f, 7.0f, 8.0f},
+        {9.0f, 10.0f, 11.0f, 12.0f},
+        {13.0f, 14.0f, 15.0f, 16.0f}
+        });
+
+    // Test equality
+    EXPECT_TRUE(m1 == m1);
+    EXPECT_FALSE(m1 == m2);
+    EXPECT_TRUE(m2 == m2);
+    EXPECT_TRUE(m3 == m3);
+}
+
+// Test addition operator
+TEST(Matrix4Test, AdditionOperator) {
+    Matrix4 m1({
+        {1.0f, 2.0f, 3.0f, 4.0f},
+        {5.0f, 6.0f, 7.0f, 8.0f},
+        {9.0f, 10.0f, 11.0f, 12.0f},
+        {13.0f, 14.0f, 15.0f, 16.0f}
+        });
+    Matrix4 m2({
+        {1.0f, 1.0f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f}
+        });
+    Matrix4 expected({
+        {2.0f, 3.0f, 4.0f, 5.0f},
+        {6.0f, 7.0f, 8.0f, 9.0f},
+        {10.0f, 11.0f, 12.0f, 13.0f},
+        {14.0f, 15.0f, 16.0f, 17.0f}
+        });
+
+    Matrix4 result = m1 + m2;
+    EXPECT_EQ(result, expected);
+}
+
+// Test multiplication operator
+TEST(Matrix4Test, MultiplicationOperator) {
+    Matrix4 m1({
+        {1.0f, 2.0f, 3.0f, 4.0f},
+        {5.0f, 6.0f, 7.0f, 8.0f},
+        {9.0f, 10.0f, 11.0f, 12.0f},
+        {13.0f, 14.0f, 15.0f, 16.0f}
+        });
+    Matrix4 m2({
+        {1.0f, 0.0f, 0.0f, 0.0f},
+        {0.0f, 1.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 1.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f, 1.0f}
+        });
+
+    Matrix4 result = m1 * m2;
+    EXPECT_EQ(result, m1);
 }

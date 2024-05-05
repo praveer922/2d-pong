@@ -63,6 +63,9 @@
     <ClCompile Include="Math\Vector4.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Matrix4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Vector2.h">
@@ -99,6 +102,9 @@
       <Filter>Source Files\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector4.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix4.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
