@@ -41,7 +41,9 @@ namespace GameObjectFactory {
 					// Access individual elements of the tuple
 					float x = positionArray[0]; // Accessing the first element (x-coordinate)
 					float y = positionArray[1]; // Accessing the second element (y-coordinate)
-					NewGameObject->addComponent(new MovementComponent{Vector2(x,y), Vector2(0.0f,0.0f)});
+					float width = it.value()["width"];
+					float height = it.value()["height"];
+					NewGameObject->addComponent(new MovementComponent{Vector2(x,y), Vector2(0.0f,0.0f), width, height});
 				}
 
 				NewGameObject->addComponent(new ForceComponent{ Vector2(0.0f,0.0f) });

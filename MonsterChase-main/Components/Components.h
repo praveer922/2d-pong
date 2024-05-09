@@ -14,11 +14,14 @@ public:
 
 class MovementComponent : public Component {
 public:
-    MovementComponent(const Vector2& position, const Vector2& velocity) :
-        position(position), velocity(velocity) {}
+    MovementComponent(const Vector2& position, const Vector2& velocity, 
+        float width, float height) :
+        position(position), velocity(velocity), width(width), height(height) {}
 
     Vector2 position;
     Vector2 velocity;
+    float width;
+    float height;
 };
 
 

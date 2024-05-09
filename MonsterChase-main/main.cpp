@@ -1,9 +1,10 @@
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
+
 #include <crtdbg.h>
 #endif // _DEBUG
+#pragma once
 #include <Windows.h>
-
 #include "GLib.h"
 #include "GameObject/GameObject.h"
 #include "Components/Components.h"
@@ -39,10 +40,24 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 	while (!bQuit) {
 		// IMPORTANT: We need to let GLib do it's thing. 
 		GLib::Service(bQuit);
+		// first, check if anything collided last frame
+		if (Timing::nextCollisionTime != -1 && Timing::nextCollisionTime < Timing::getCurrentTime()) {
+			Engine::ConsolePrint("COLLISSION!!!\n");
+		}
+
 		for (auto& gameObject : AllGameObjects) {
 			gameObject->update();
 		}
 
+		// update collision time
+		float collision_time = Physics::sweptAABB(player->getComponent<MovementComponent>(), 
+			badGuy->getComponent<MovementComponent>());
+		if (collision_time == -1) {
+			Timing::nextCollisionTime = -1;
+		}
+		else {
+			Timing::nextCollisionTime = collision_time + Timing::getCurrentTime();
+		}
 
 		Rendering::beginRenderLoop();
 		for (auto& gameObject : AllGameObjects) {

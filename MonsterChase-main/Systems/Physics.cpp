@@ -29,8 +29,60 @@ namespace Physics {
 
             force->x(drag_x);
             force->y(drag_y);
-          
-            
-        
+    }
+
+    // collision detection: returns time till objects collide, or -1 if they don't
+    float sweptAABB(MovementComponent * obj1, MovementComponent * obj2) {
+        float dxEntry, dxExit;
+        float dyEntry, dyExit;
+
+        if (obj1->velocity.x() > 0.0f) {
+            dxEntry = obj2->position.x() - (obj1->position.x() + obj1->width);
+            dxExit = (obj2->position.x() + obj2->width) - obj1->position.x();
+        }
+        else {
+                dxEntry = (obj2->position.x() + obj2->width) - obj1->position.x();
+                dxExit = obj2->position.x() - (obj1->position.x() + obj1->width);
+        }
+
+        if (obj1->velocity.y() > 0.0f) {
+            dyEntry = obj2->position.y() - (obj1->position.y() + obj1->height);
+            dyExit = (obj2->position.y() + obj2->height) - obj1->position.y();
+        }
+        else {
+            dyEntry = (obj2->position.y() + obj2->height) - obj1->position.y();
+            dyExit = obj2->position.y() - (obj1->position.y() + obj1->height);
+        }
+
+        float txEntry, txExit;
+        float tyEntry, tyExit;
+
+        if (obj1->velocity.x() == 0.0f) {
+            txEntry = -std::numeric_limits<float>::infinity();
+            txExit = std::numeric_limits<float>::infinity();
+        }
+        else {
+            txEntry = dxEntry / obj1->velocity.x();
+            txExit = dxExit / obj1->velocity.x();
+        }
+
+        if (obj1->velocity.y() == 0.0f) {
+            tyEntry = -std::numeric_limits<float>::infinity();
+            tyExit = std::numeric_limits<float>::infinity();
+        }
+        else {
+            tyEntry = dyEntry / obj1->velocity.y();
+            tyExit = dyExit / obj1->velocity.y();
+        }
+
+        float entryTime = max(txEntry, tyEntry);
+        float exitTime = min(txExit, tyExit);
+
+        if (entryTime < 0.0f || exitTime < 0.0f || entryTime > exitTime) {
+            return -1;
+        }
+        else {
+            return entryTime;
+        }
     }
 }

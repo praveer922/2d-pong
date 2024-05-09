@@ -3,6 +3,7 @@
 #include "Systems/Timing.h"
 #include "Systems/Physics.h"
 #include "GameObject.h"
+#include "Console/ConsolePrint.h"
 
 PlayerObjectController::PlayerObjectController() : forceApplied({0.0f,0.0f}) {
     GLib::SetKeyStateChangeCallback(std::bind(&PlayerObjectController::KeypressHandler, this, std::placeholders::_1, std::placeholders::_2));

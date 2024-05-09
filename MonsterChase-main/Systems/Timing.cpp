@@ -2,8 +2,10 @@
 #include <windows.h>
 
 namespace Timing {
+    static LARGE_INTEGER frequency;
+    float nextCollisionTime = -1;
+    
     float getDeltaTimeSinceLastCall() {
-        static LARGE_INTEGER frequency;
         static LARGE_INTEGER lastCallTime;
         LARGE_INTEGER currentTime;
 
@@ -22,5 +24,13 @@ namespace Timing {
         lastCallTime = currentTime;
 
         return deltaTime;
+    }
+
+    float getCurrentTime() {
+        LARGE_INTEGER currentTime;
+
+        QueryPerformanceCounter(&currentTime);
+
+        return static_cast<float>(currentTime.QuadPart) / frequency.QuadPart;
     }
 }

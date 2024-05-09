@@ -8,7 +8,9 @@
       "sprite_texture_source": "data\\goodguy.dds"
     },
     "movement": {
-      "position": [ -180.0, -100.0 ]
+      "position": [ -180.0, -100.0 ],
+      "height": 10.0,
+      "width":  5.0
     }
   }
 }
