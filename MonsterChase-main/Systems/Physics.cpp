@@ -85,4 +85,12 @@ namespace Physics {
             return entryTime;
         }
     }
+
+    void handleCollision(MovementComponent* playerMovement, ForceComponent* playerForce) {
+        // first get movement direction
+        Vector2 collisionForce = -1 * (playerMovement->velocity);
+        // scale it 
+        collisionForce *= 100000;
+        playerForce->force = playerForce->force + collisionForce;
+    }
 }

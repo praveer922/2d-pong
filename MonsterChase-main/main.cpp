@@ -43,6 +43,7 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 		// first, check if anything collided last frame
 		if (Timing::nextCollisionTime != -1 && Timing::nextCollisionTime < Timing::getCurrentTime()) {
 			Engine::ConsolePrint("COLLISSION!!!\n");
+			Physics::handleCollision(player->getComponent<MovementComponent>(), player->getComponent<ForceComponent>());
 		}
 
 		for (auto& gameObject : AllGameObjects) {
