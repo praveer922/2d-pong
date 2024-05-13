@@ -1,0 +1,16 @@
+{
+  "controller": {
+    "type": "AI"
+  },
+
+  "components": {
+    "sprite": {
+      "sprite_texture_source": "data\\BadGuy.dds"
+    },
+    "movement": {
+      "position": [ 180.0, -100.0 ],
+      "height": 300.0,
+      "width": 300.0
+    }
+  }
+}
