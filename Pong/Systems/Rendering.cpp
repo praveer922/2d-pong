@@ -14,7 +14,7 @@ namespace Rendering {
 
     void beginRenderLoop() {
         // IMPORTANT: Tell GLib that we want to start rendering
-        GLib::BeginRendering(DirectX::Colors::White);
+        GLib::BeginRendering(DirectX::Colors::Black);
         // Tell GLib that we want to render some sprites
         GLib::Sprites::BeginRendering();
     }

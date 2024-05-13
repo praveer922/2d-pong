@@ -3,6 +3,7 @@
 #include "GameObjectFactory.h"
 #include "GLib.h"
 #include "Math/Vector2.h"
+#include "Systems/Physics.h"
 
 
 
@@ -55,7 +56,7 @@ namespace GameObjectFactory {
 					float height = it.value()["height"];
 					Vector2 velocity = { 0.0f, 0.0f };
 					if (NewGameObject->type == GameObjectType::BALL) {
-						velocity = { 100.0f, 100.0f };
+						velocity = Physics::getRandomVector2(150.0);
 					}
 					NewGameObject->addComponent(new MovementComponent{Vector2(x,y), velocity, width, height});
 				}

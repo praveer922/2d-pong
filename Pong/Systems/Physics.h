@@ -17,4 +17,5 @@ namespace Physics {
     void handleCollisions(std::vector<std::shared_ptr<GameObject>>& allGameObjects);
     void handleCollision(std::shared_ptr<GameObject> gameObject);
     void handleBallCollision(std::shared_ptr<GameObject> gameObject);
+    Vector2 getRandomVector2(float magnitude);
 }

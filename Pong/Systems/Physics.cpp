@@ -1,5 +1,7 @@
 #include "Physics.h"
 #include <Components/Components.h>
+#include <cmath>
+#include <random>
 
 namespace Physics {
 
@@ -56,21 +58,37 @@ namespace Physics {
             // first get movement direction
             Vector2 collisionForce = -1 * (playerMovement->velocity);
             // scale it 
-            collisionForce *= 100000;
+            collisionForce *= 50000;
             playerForce->force = playerForce->force + collisionForce;
         }
-
     }
 
     void handleBallCollision(std::shared_ptr<GameObject> gameObject) {
         MovementComponent* ballMovement = gameObject->getComponent<MovementComponent>();
+        Vector2 position = ballMovement->position;
+        if (position.y() <= -265.0 || position.y() >= 265.0) {
+            ballMovement->velocity = { ballMovement->velocity.x(), -ballMovement->velocity.y() };
+        }
+        else {
+            ballMovement->velocity = { -ballMovement->velocity.x(), ballMovement->velocity.y() };
+        }
+    }
 
-        ballMovement->velocity = { -ballMovement->velocity.x(), ballMovement->velocity.y() };
+    bool isWallCollision(std::shared_ptr<GameObject> gameObject) {
+        Vector2 position = gameObject->getComponent<MovementComponent>()->position;
+        return (position.x() <= -400.0 || position.x() >= 400.0 || 
+            position.y() <= -300.0 || position.y() >= 265.0);
 
     }
 
     void handleCollisions(std::vector<std::shared_ptr<GameObject>>& allGameObjects) {
         for (int i = 0; i < allGameObjects.size(); i++) {
+            // first check if ball is hitting any wall
+            if (allGameObjects[i]->type == GameObjectType::BALL && 
+                    isWallCollision(allGameObjects[i])) {
+                    handleCollision(allGameObjects[i]);
+            }
+            // then check for gameobject collisions
             for (int j = i+1; j < allGameObjects.size(); j++) {
                 MovementComponent* a = allGameObjects[i]->getComponent<MovementComponent>();
                 MovementComponent* b = allGameObjects[j]->getComponent<MovementComponent>();
@@ -80,5 +98,21 @@ namespace Physics {
                 }
             }
         }
+    }
+
+    Vector2 getRandomVector2(float magnitude) {
+        // Create a random number generator engine
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> distr(0, 2 * 3.14159265); // Uniform distribution for angle
+
+        // Generate a random angle
+        float angle = distr(gen);
+
+        // Calculate the components of the vector using polar coordinates
+        float x = magnitude * cos(angle);
+        float y = magnitude * sin(angle);
+
+        return { x, y };
     }
 }
