@@ -20,7 +20,17 @@ namespace GameObjectFactory {
 	{
 		using namespace Engine::Math;
 
-		std::shared_ptr<GameObject> NewGameObject = std::make_shared<GameObject>();
+		std::shared_ptr<GameObject> NewGameObject;
+		if (ConfigData["type"] == "player1") {
+			NewGameObject = std::make_shared<GameObject>(GameObjectType::PLAYER1);
+		}
+		else if (ConfigData["type"] == "player2") {
+			NewGameObject = std::make_shared<GameObject>(GameObjectType::PLAYER2);
+		}
+		else {
+			NewGameObject = std::make_shared<GameObject>(GameObjectType::BALL);
+		}
+
 		if (ConfigData.contains("components"))
 		{
 			assert(ConfigData["components"].is_object());

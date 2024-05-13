@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\BadGuy.dds" />
+    <Image Include="data\Computer.dds" />
     <Image Include="data\GoodGuy.dds" />
   </ItemGroup>
   <ItemGroup>

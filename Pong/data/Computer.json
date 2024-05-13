@@ -1,0 +1,14 @@
+{
+  "type": "player2",
+
+  "components": {
+    "sprite": {
+      "sprite_texture_source": "data\\Computer.dds"
+    },
+    "movement": {
+      "position": [ 180.0, -100.0 ],
+      "height": 133.0,
+      "width": 26.0
+    }
+  }
+}

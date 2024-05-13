@@ -1,16 +1,14 @@
 {
-  "controller": {
-    "type": "player"
-  },
+  "type": "player1",
 
   "components": {
     "sprite": {
-      "sprite_texture_source": "data\\goodguy.dds"
+      "sprite_texture_source": "data\\Player.dds"
     },
     "movement": {
       "position": [ -180.0, -100.0 ],
-      "height": 200.0,
-      "width":  150.0
+      "height": 133.0,
+      "width":  26.0
     }
   }
 }

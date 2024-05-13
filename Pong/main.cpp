@@ -19,23 +19,26 @@
 using namespace Engine::Math;
 
 void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
-	Rendering::init(i_hInstance, i_nCmdShow, "MonsterChase", 800, 600);
+	Rendering::init(i_hInstance, i_nCmdShow, "Pong", 800, 600);
 	
 
 	// create game objects
 	std::vector<std::shared_ptr<GameObject>> AllGameObjects;
 
 	std::shared_ptr<GameObject> player = GameObjectFactory::createGameObject("data\\Player.json");
-	std::shared_ptr<GameObject> badGuy = GameObjectFactory::createGameObject("data\\BadGuy.json");
+	std::shared_ptr<GameObject> computer = GameObjectFactory::createGameObject("data\\Computer.json");
+	std::shared_ptr<GameObject> ball = GameObjectFactory::createGameObject("data\\Ball.json");
 
 	AllGameObjects.push_back(player);
-	AllGameObjects.push_back(badGuy);
+	AllGameObjects.push_back(computer);
+	AllGameObjects.push_back(ball);
 
 	bool bQuit = false;
 
 	// set player controller
 	IGameObjectController* playerController = new PlayerObjectController();
 	player->setController(playerController);
+	computer->setController(playerController);
 
 	while (!bQuit) {
 		// IMPORTANT: We need to let GLib do it's thing. 
@@ -43,8 +46,9 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 
 		Physics::handleCollisions(AllGameObjects);
 
+		float dt = Timing::getDeltaTimeSinceLastCall();
 		for (auto& gameObject : AllGameObjects) {
-			gameObject->update();
+			gameObject->update(dt);
 		}
 
 		Rendering::beginRenderLoop();

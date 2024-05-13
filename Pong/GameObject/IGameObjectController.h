@@ -7,5 +7,5 @@ class IGameObjectController {
 public:
     virtual ~IGameObjectController() {}
 
-    virtual void update(GameObject& gameObject) = 0; // Pure virtual function for updating the controller
+    virtual void update(GameObject& gameObject, float dt) = 0; // Pure virtual function for updating the controller
 };

@@ -16,8 +16,8 @@ void GameObject::addComponent(Component* component) {
 void GameObject::setController(IGameObjectController* newController) {
 	controller = newController;
 }
-void GameObject::update() {
+void GameObject::update(float dt) {
 	if (controller) {
-		controller->update(*this);
+		controller->update(*this, dt);
 	}
 }

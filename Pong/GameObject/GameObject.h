@@ -4,13 +4,20 @@
 #include "Components/Components.h"
 #include "IGameObjectController.h"
 
+enum class GameObjectType {
+    PLAYER1,
+    PLAYER2,
+    BALL
+};
+
 struct GameObject {
     std::vector<Component*> components; 
     IGameObjectController * controller;
+    GameObjectType type;
 
 
     // Constructor
-    GameObject() : controller(nullptr) {}
+    GameObject(GameObjectType objType) : controller(nullptr), type(objType) {}
 
     // Destructor
     ~GameObject();
@@ -19,7 +26,7 @@ struct GameObject {
     void addComponent(Component* component);
 
     void setController(IGameObjectController * newController);
-    void update();
+    void update(float dt);
     
     // Member function to get a component by type
     template<typename T>
