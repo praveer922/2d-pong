@@ -31,6 +31,13 @@ namespace Physics {
             force->y(drag_y);
     }
 
+    void UpdateBall(MovementComponent* movementComponent, float dt) {
+        Vector2* position = &movementComponent->position;
+        Vector2* velocity = &movementComponent->velocity;
+        position->x(position->x() + velocity->x() * dt);
+        position->y(position->y() + velocity->y() * dt);
+    }
+
     bool isCollision(MovementComponent * obj1, MovementComponent * obj2) {
         return (obj1->position.x() < obj2->position.x() + obj2->width &&
             obj1->position.x() + obj1->width > obj2->position.x() &&
@@ -39,12 +46,27 @@ namespace Physics {
             );
     }
 
-    void handleCollision(MovementComponent* playerMovement, ForceComponent* playerForce) {
-        // first get movement direction
-        Vector2 collisionForce = -1 * (playerMovement->velocity);
-        // scale it 
-        collisionForce *= 100000;
-        playerForce->force = playerForce->force + collisionForce;
+    void handleCollision(std::shared_ptr<GameObject> gameObject) {
+        if (gameObject->type == GameObjectType::BALL) {
+            handleBallCollision(gameObject);
+        }
+        else {
+            MovementComponent* playerMovement = gameObject->getComponent<MovementComponent>();
+            ForceComponent* playerForce = gameObject->getComponent<ForceComponent>();
+            // first get movement direction
+            Vector2 collisionForce = -1 * (playerMovement->velocity);
+            // scale it 
+            collisionForce *= 100000;
+            playerForce->force = playerForce->force + collisionForce;
+        }
+
+    }
+
+    void handleBallCollision(std::shared_ptr<GameObject> gameObject) {
+        MovementComponent* ballMovement = gameObject->getComponent<MovementComponent>();
+
+        ballMovement->velocity = { -ballMovement->velocity.x(), ballMovement->velocity.y() };
+
     }
 
     void handleCollisions(std::vector<std::shared_ptr<GameObject>>& allGameObjects) {
@@ -53,8 +75,8 @@ namespace Physics {
                 MovementComponent* a = allGameObjects[i]->getComponent<MovementComponent>();
                 MovementComponent* b = allGameObjects[j]->getComponent<MovementComponent>();
                 if (isCollision(a,b)) {
-                    handleCollision(a, allGameObjects[i]->getComponent<ForceComponent>());
-                    handleCollision(b, allGameObjects[j]->getComponent<ForceComponent>());
+                    handleCollision(allGameObjects[i]);
+                    handleCollision(allGameObjects[j]);
                 }
             }
         }

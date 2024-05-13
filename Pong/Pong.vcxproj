@@ -178,13 +178,14 @@
     <ClInclude Include="Systems\Timing.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="data\BadGuy.dds" />
+    <Image Include="data\Ball.dds" />
     <Image Include="data\Computer.dds" />
-    <Image Include="data\GoodGuy.dds" />
+    <Image Include="data\Player.dds" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BadGuy.json" />
-    <None Include="data\BadGuy.json" />
+    <None Include="data\Ball.json" />
+    <None Include="data\Computer.json" />
     <None Include="data\Player.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

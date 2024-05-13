@@ -35,10 +35,12 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 
 	bool bQuit = false;
 
-	// set player controller
+	// set controllers
 	IGameObjectController* playerController = new PlayerObjectController();
+	IGameObjectController* ballController = new BallObjectController();
 	player->setController(playerController);
 	computer->setController(playerController);
+	ball->setController(ballController);
 
 	while (!bQuit) {
 		// IMPORTANT: We need to let GLib do it's thing. 

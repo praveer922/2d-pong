@@ -50,3 +50,7 @@ void PlayerObjectController::KeypressHandler(unsigned int i_VKeyID, bool i_bDown
 			forceApplied_p2 = { 360000.0f , 0 };
 		}
 }
+
+void BallObjectController::update(GameObject& gameObject, float dt) {
+	Physics::UpdateBall(gameObject.getComponent<MovementComponent>(), dt);
+}

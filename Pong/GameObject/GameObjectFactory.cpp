@@ -53,7 +53,11 @@ namespace GameObjectFactory {
 					float y = positionArray[1]; // Accessing the second element (y-coordinate)
 					float width = it.value()["width"];
 					float height = it.value()["height"];
-					NewGameObject->addComponent(new MovementComponent{Vector2(x,y), Vector2(0.0f,0.0f), width, height});
+					Vector2 velocity = { 0.0f, 0.0f };
+					if (NewGameObject->type == GameObjectType::BALL) {
+						velocity = { 100.0f, 100.0f };
+					}
+					NewGameObject->addComponent(new MovementComponent{Vector2(x,y), velocity, width, height});
 				}
 
 				NewGameObject->addComponent(new ForceComponent{ Vector2(0.0f,0.0f) });
