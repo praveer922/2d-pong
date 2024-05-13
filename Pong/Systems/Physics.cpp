@@ -46,4 +46,17 @@ namespace Physics {
         collisionForce *= 100000;
         playerForce->force = playerForce->force + collisionForce;
     }
+
+    void handleCollisions(std::vector<std::shared_ptr<GameObject>>& allGameObjects) {
+        for (int i = 0; i < allGameObjects.size(); i++) {
+            for (int j = i+1; j < allGameObjects.size(); j++) {
+                MovementComponent* a = allGameObjects[i]->getComponent<MovementComponent>();
+                MovementComponent* b = allGameObjects[j]->getComponent<MovementComponent>();
+                if (isCollision(a,b)) {
+                    handleCollision(a, allGameObjects[i]->getComponent<ForceComponent>());
+                    handleCollision(b, allGameObjects[j]->getComponent<ForceComponent>());
+                }
+            }
+        }
+    }
 }

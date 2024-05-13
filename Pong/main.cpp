@@ -41,10 +41,7 @@ void runGame(HINSTANCE i_hInstance, int i_nCmdShow) {
 		// IMPORTANT: We need to let GLib do it's thing. 
 		GLib::Service(bQuit);
 
-		if (Physics::isCollision(player->getComponent<MovementComponent>(),
-			badGuy->getComponent<MovementComponent>())) {
-			Physics::handleCollision(player->getComponent<MovementComponent>(), player->getComponent<ForceComponent>());
-		}
+		Physics::handleCollisions(AllGameObjects);
 
 		for (auto& gameObject : AllGameObjects) {
 			gameObject->update();
